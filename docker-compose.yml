@@ -1,0 +1,14 @@
+services:
+  qucs-suite:
+    build: .
+    image: qucs-modern-suite
+    container_name: qucs_lab
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./my_circuits:/home/builder/share
+    network_mode: host
+    stdin_open: true # Keeps the container reactive
+    tty: true        # Keeps the container reactive
+    command: qucs-launch # This will now run the 'tail -f' part and wait
